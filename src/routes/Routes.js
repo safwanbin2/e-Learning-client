@@ -6,6 +6,7 @@ import Home from "../components/Home";
 import Login from "../components/Login/Login";
 import Register from "../components/Login/Register";
 import Main from "../layout/Main";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -26,7 +27,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/checkout/:id',
-                element: <Checkout></Checkout>,
+                element: <PrivateRoute><Checkout></Checkout></PrivateRoute>,
                 loader: async ({ params }) => fetch(`https://e-learning-server-wheat.vercel.app/courses/${params.id}`)
             },
             {
