@@ -5,7 +5,7 @@ const Checkout = () => {
     const course = useLoaderData();
 
     return (
-        <div className='min-h-screen flex items-center justify-center flex-col'>
+        <div className='md:min-h-screen my-4 flex items-center justify-center flex-col'>
             <div className="hero" style={{ backgroundImage: `url(${course.img})` }}>
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="hero-content text-center text-neutral-content">

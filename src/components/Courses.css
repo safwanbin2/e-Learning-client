@@ -2,3 +2,10 @@
     display: grid;
     grid-template-columns: 3fr 9fr;
 }
+
+@media screen and (max-width: 667px) {
+    .courses{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
