@@ -16,7 +16,7 @@ const Header = () => {
     return (
         <div className="navbar bg-base-300 shadow-lg">
             <div className="flex-1">
-                <Link to='/' className="btn btn-ghost normal-case text-xl flex items-center">eLearning <img src={logo} className="w-10 ml-2" alt="" /></Link>
+                <Link to='/' className="btn btn-ghost normal-case md:text-xl text-md flex items-center">eLearning <img src={logo} className="md:w-10 w-6 ml-2" alt="" /></Link>
             </div>
             <div className="flex-none">
                 <ul className="menu menu-horizontal p-0">
