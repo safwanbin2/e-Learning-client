@@ -3,6 +3,8 @@ import Checkout from "../components/Checkout";
 import Courses from "../components/Courses";
 import Details from "../components/Details";
 import Home from "../components/Home";
+import Login from "../components/Login/Login";
+import Register from "../components/Login/Register";
 import Main from "../layout/Main";
 
 export const router = createBrowserRouter([
@@ -26,6 +28,14 @@ export const router = createBrowserRouter([
                 path: '/checkout/:id',
                 element: <Checkout></Checkout>,
                 loader: async ({ params }) => fetch(`https://e-learning-server-wheat.vercel.app/courses/${params.id}`)
+            },
+            {
+                path: '/login',
+                element: <Login></Login>
+            },
+            {
+                path: '/register',
+                element: <Register></Register>
             }
         ]
     }
