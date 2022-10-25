@@ -1,9 +1,13 @@
 import React from 'react';
+import { useState } from 'react';
 import { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Register = () => {
+    const [error, setError] = useState('');
+
     const { createUser, updateUser } = useContext(AuthContext);
     const handleSubmit = event => {
         event.preventDefault();
@@ -17,17 +21,26 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 update(name, photo);
+                toast.success('created account successfully')
+                setError('')
                 console.log(user)
             })
             .catch(e => {
+                toast.error('failed to create account')
                 console.error(e)
+                setError(e.message)
             })
     }
 
     const update = (name, photo) => {
         updateUser(name, photo)
-            .then(() => { })
-            .catch(e => console.error(e))
+            .then(() => {
+                setError('')
+            })
+            .catch(e => {
+                console.error(e)
+                setError(e.message)
+            })
     }
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -39,7 +52,7 @@ const Register = () => {
                     <form onSubmit={handleSubmit} className="card-body">
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Name</span>
+                                <span className="label-text">Full Name</span>
                             </label>
                             <input type="text" name='name' required placeholder="name" className="input input-bordered" />
                         </div>
@@ -63,6 +76,10 @@ const Register = () => {
                             <label className="label">
                                 <Link to='/login' className="label-text-alt link link-hover">Already have an account?</Link>
                             </label>
+                            {
+                                error &&
+                                <p className="label-text-alt text-error">{error}</p>
+                            }
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Register</button>

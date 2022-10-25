@@ -2,9 +2,13 @@ import React from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import { FaGithub, FaGoogle } from 'react-icons/fa';
+import { useState } from 'react';
 
 const Login = () => {
-    const { logIn } = useContext(AuthContext);
+    const [error, setError] = useState('')
+
+    const { logIn, googleLogIn, gitHubLogIn } = useContext(AuthContext);
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -16,14 +20,44 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
+                setError('')
             })
-            .catch(e => console.error(e))
+            .catch(e => {
+                setError(e.message)
+                console.error(e)
+            })
+    }
+
+    const handleGoogleLogIn = () => {
+        googleLogIn()
+            .then(result => {
+                const user = result.user;
+                setError('')
+                console.log(user)
+            })
+            .catch(e => {
+                setError(e.message)
+                console.error(e)
+            })
+    }
+
+    const handleGitHubLogIn = () => {
+        gitHubLogIn()
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+                setError('')
+            })
+            .catch(e => {
+                setError(e.message)
+                console.error(e)
+            })
     }
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col">
                 <div className="text-center lg:text-left">
-                    <h1 className="text-3xl font-bold">Please, Login now!</h1>
+                    <h1 className="text-3xl font-bold">Please, Login to account now!</h1>
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <form onSubmit={handleSubmit} className="card-body">
@@ -41,8 +75,15 @@ const Login = () => {
                             <label className="label">
                                 <Link to='/register' className="label-text-alt link link-hover">Don't have an account?</Link>
                             </label>
+                            {
+                                error &&  <p className="label-text-alt text-error">{error}</p>
+                            }
                         </div>
-                        <div className="form-control mt-6">
+                        <div className='flex items-center justify-center'>
+                            <button onClick={handleGoogleLogIn} className='btn mx-2'><FaGoogle /></button>
+                            <button onClick={handleGitHubLogIn} className='btn mx-2'><FaGithub /></button>
+                        </div>
+                        <div className="form-control mt-2">
                             <button className="btn btn-primary">Login</button>
                         </div>
                     </form>

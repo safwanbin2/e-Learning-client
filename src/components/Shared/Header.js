@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/code.png';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import { FaUserAlt } from 'react-icons/fa';
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -32,7 +33,11 @@ const Header = () => {
                     {
                         user ?
                             <div className='flex items-center'>
-                                <img className='w-9 h-9 mx-2' title={user.displayName} style={{ borderRadius: "50%" }} src={user.photoURL} alt="" />
+                                {
+                                    user.photoURL ?
+                                        <img className='w-9 h-9 mx-2' title={user.displayName} style={{ borderRadius: "50%" }} src={user.photoURL} alt="" />
+                                        : <FaUserAlt className='w-9 h-9 mx-2'></FaUserAlt>
+                                }
                                 <button onClick={handleLogOut} className='mx-2'>Logout</button>
                             </div>
                             : <li className='mx-2'><Link to='/login'>Login</Link></li>
