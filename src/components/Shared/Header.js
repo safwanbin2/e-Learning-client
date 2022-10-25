@@ -22,7 +22,7 @@ const Header = () => {
                 <ul className="menu menu-horizontal p-0">
                     <li className='mx-2'><Link to='/courses'>Courses</Link></li>
                     <li className='mx-2'><Link>FAQ</Link></li>
-                    <li className='mx-2'><Link>BLog</Link></li>
+                    <li className='mx-2'><Link to='/blog'>BLog</Link></li>
                     {/* <li> */}
                     <label className="swap swap-rotate mx-2">
                         <input type="checkbox" />

@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import BLog from "../components/BLog";
 import Checkout from "../components/Checkout";
 import Courses from "../components/Courses";
 import Details from "../components/Details";
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
                 path: '/checkout/:id',
                 element: <PrivateRoute><Checkout></Checkout></PrivateRoute>,
                 loader: async ({ params }) => fetch(`https://e-learning-server-wheat.vercel.app/courses/${params.id}`)
+            },
+            {
+                path: '/blog',
+                element: <BLog></BLog>
             },
             {
                 path: '/login',
