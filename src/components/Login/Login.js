@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 const Login = () => {
     const [error, setError] = useState('')
@@ -24,10 +25,12 @@ const Login = () => {
                 const user = result.user;
                 console.log(user)
                 setError('')
+                toast.success('logged in successfully')
                 navigate(from, {replace: true});
             })
             .catch(e => {
                 setError(e.message)
+                toast.error('failed to login')
                 console.error(e)
             })
     }
@@ -38,10 +41,12 @@ const Login = () => {
                 const user = result.user;
                 setError('')
                 console.log(user)
+                toast.success('logged in successfully')
                 navigate(from, {replace: true});
             })
             .catch(e => {
                 setError(e.message)
+                toast.error('failed to login')
                 console.error(e)
             })
     }
@@ -51,11 +56,13 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
+                toast.success('logged in successfully')
                 setError('')
                 navigate(from, {replace: true});
             })
             .catch(e => {
                 setError(e.message)
+                toast.error('failed to login')
                 console.error(e)
             })
     }

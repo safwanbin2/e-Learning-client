@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 
+
 const Details = () => {
     const course = useLoaderData();
     const { title, id, img, price, description, duration } = course;
